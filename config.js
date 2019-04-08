@@ -3,14 +3,14 @@ module.exports = {
   'rpc': {
     'protocol': process.env.rpc_protocol ? process.env.rpc_protocol : 'http',
     'user': process.env.rpc_user ? process.env.rpc_user : 'root',
-    'pass': process.env.rpc_pass ? process.env.rpc_pass : 'bitcoin',
-    'host': process.env.rpc_host ? process.env.rpc_host : ip.address(),
-    'port': process.env.rpc_port ? process.env.rpc_port : '8332',
+    'pass': process.env.rpc_pass ? process.env.rpc_pass : 'bitcore',
+    'host': process.env.RPC_HOST ? process.env.RPC_HOST : ip.address(),
+    'port': process.env.rpc_port ? process.env.rpc_port : '8556',
     'limit': Number.parseInt(process.env.rpc_limit ? process.env.rpc_limit : 15)
   },
   'db': {
     'name': process.env.db_name ? process.env.db_name : 'bitdb',
-    'url': process.env.db_url ? process.env.db_url : 'mongodb://localhost:27017',
+    'url': process.env.MONGODB_URL ? process.env.MONGODB_URL : 'mongodb://localhost:27017',
     'index': {
       'confirmed': {
         'keys': [
@@ -39,16 +39,16 @@ module.exports = {
   'zmq': {
     'incoming': {
       'host': process.env.zmq_incoming_host ? process.env.zmq_incoming_host : ip.address(),
-      'port': process.env.zmq_incoming_port ? process.env.zmq_incoming_port : '28332'
+      'port': process.env.zmq_incoming_port ? process.env.zmq_incoming_port : '28556'
     },
     'outgoing': {
       'host': process.env.zmq_outgoing_host ? process.env.zmq_outgoing_host : '0.0.0.0',
-      'port': process.env.zmq_outgoing_port ? process.env.zmq_outgoing_port : '28339'
+      'port': process.env.zmq_outgoing_port ? process.env.zmq_outgoing_port : '28555'
     }
   },
   'core': {
     'version': '0.2.0',
-    'from': Number.parseInt(process.env.core_from ? process.env.core_from : 525470),
+    'from': Number.parseInt(process.env.core_from ? process.env.core_from : 0),
     'verbose': process.env.core_verbose ? process.env.core_verbose : false
   }
 }

@@ -1,7 +1,7 @@
-const bch = require('bitcore-lib-cash')
+const btx = require('bitcore-lib-btx')
 const zmq = require('zeromq')
 const RpcClient = require('bitcoind-rpc')
-const TNA = require('fountainhead-tna')
+const TNA = require('tna-btx')
 const pLimit = require('p-limit')
 const pQueue = require('p-queue')
 const Config = require('./config.js')
@@ -30,7 +30,7 @@ const request = {
           throw new Error(err)
         } else {
           rpc.getBlock(res.result, 0, function(err, block) {
-            resolve(bch.Block.fromString(block.result))
+            resolve(btx.Block.fromString(block.result))
           })
         }
       })
@@ -184,7 +184,7 @@ const handle_zmq_block = async function() {
 
 const handle_zmq_tx = async function(rawtx) {
   queue.add(async function() {
-    let tx = new bch.Transaction(rawtx);
+    let tx = new btx.Transaction(rawtx);
     let tna = await TNA.fromGene(tx);
     try {
       await Db.mempool.insert(tna)
